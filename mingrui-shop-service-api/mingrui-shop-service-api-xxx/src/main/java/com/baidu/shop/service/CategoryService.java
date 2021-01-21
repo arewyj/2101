@@ -8,9 +8,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-
 /**
  * @ClassName CategoryService
  * @Description: TODO
@@ -28,6 +26,7 @@ public interface CategoryService {
     @ApiOperation(value = "通过id删除分类")
     @DeleteMapping(value = "category/delete")
     Result<JsonObject> delCategory(Integer id);
+
 
     @ApiOperation(value = "新增分类")
     @PostMapping(value = "category/save")

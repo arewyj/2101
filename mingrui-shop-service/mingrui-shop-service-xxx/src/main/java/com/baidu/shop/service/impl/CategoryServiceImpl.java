@@ -36,9 +36,8 @@ public class CategoryServiceImpl extends BaseApiService implements CategoryServi
         return this.setResultSuccess(list);
     }
 
-
     @Transactional
-    @Override
+    @Override    // 删除
     public Result<JsonObject> delCategory(Integer id) {
 
         // 效验id是否合法
@@ -68,14 +67,14 @@ public class CategoryServiceImpl extends BaseApiService implements CategoryServi
     }
 
     @Transactional
-    @Override
+    @Override  // 修改
     public Result<JsonObject> editCategory(CategoryEntity categoryEntity) {
         categoryMapper.updateByPrimaryKeySelective(categoryEntity);
         return this.setResultSuccess();
     }
 
     @Transactional
-    @Override
+    @Override   // 添加
     public Result<JsonObject> saveCategory(CategoryEntity categoryEntity) {
         CategoryEntity parentCategoryEntity  = new CategoryEntity();
         parentCategoryEntity.setId(categoryEntity.getParentId());

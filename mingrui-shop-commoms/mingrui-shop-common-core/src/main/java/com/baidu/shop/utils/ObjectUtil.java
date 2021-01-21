@@ -8,6 +8,7 @@ package com.baidu.shop.utils;
  * @Version V1.0
  **/
 public class ObjectUtil {
+
     public static Boolean isNull(Object obj){
         return obj == null ;
     }

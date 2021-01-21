@@ -30,6 +30,7 @@ public class MrSwagger2Config {
                 .build();
     }
 
+
     private ApiInfo apiInfo(){
         return new ApiInfoBuilder()
                 //标题

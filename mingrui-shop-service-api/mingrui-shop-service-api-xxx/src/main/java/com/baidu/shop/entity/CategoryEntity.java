@@ -22,7 +22,6 @@ public class CategoryEntity {
     @ApiModelProperty(value ="类目id", example = "1")
     private Integer id;
 
-
     @ApiModelProperty(value ="类目名称")
     private String name;
 

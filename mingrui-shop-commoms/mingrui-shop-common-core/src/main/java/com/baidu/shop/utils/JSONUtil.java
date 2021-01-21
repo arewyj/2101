@@ -244,4 +244,5 @@ public class JSONUtil {
         /** 不是JSON格式的字符串 */
         JSON_TYPE_ERROR
     }
+
 }

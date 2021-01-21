@@ -75,7 +75,6 @@
     <dependencyManagement>
 
         <dependencies>
-
             <!--cloud 依赖-->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>

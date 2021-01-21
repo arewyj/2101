@@ -30,6 +30,7 @@
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
 
+
         <!--mysql数据库连接-->
         <dependency>
             <groupId>mysql</groupId>

@@ -11,6 +11,7 @@
 
     <artifactId>mingrui-shop-basic-zuul-server</artifactId>
 
+
     <dependencies>
         <!-- zuul -->
         <dependency>
@@ -18,4 +19,5 @@
             <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
         </dependency>
     </dependencies>
+
 </project>

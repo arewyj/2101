@@ -5,6 +5,7 @@ spring:
   application:
     name: eureka-server
 
+
 eureka:
   client:
     # eureka服务url,值为map集合默认key为defaultZone
