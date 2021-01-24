@@ -19,7 +19,7 @@ import javax.persistence.Table;
 public class BrandEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)//主键自增
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //新增返回主键
     private Integer id;
 
     private String name;
