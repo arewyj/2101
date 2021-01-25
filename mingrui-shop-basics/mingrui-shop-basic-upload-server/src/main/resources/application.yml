@@ -13,7 +13,8 @@ eureka:
 mingrui:
   upload:
     path:
-      windows: D:\\images
+      windows: E:\\images
       linux: /wang/images
     img:
       host: http://image.mrshop.com
+

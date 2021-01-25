@@ -30,15 +30,12 @@ public class CategoryEntity {
     private String name;
 
     @ApiModelProperty(value ="父类目id,顶级类目填0", example = "1")
-    @NotNull(message = "父类目录id不能为空",groups = {MingruiOperation.Update.class})
     private Integer parentId;
 
     @ApiModelProperty(value ="是否为父节点，0为否，1为是", example = "1")
-    @NotEmpty(message = "是否是父级节点不能空",groups = {MingruiOperation.Add.class})
     private Integer isParent;
 
     @ApiModelProperty(value ="排序指数，越小越靠前", example = "1")
-    @NotEmpty(message = "排序不能空",groups = {MingruiOperation.Add.class})
     private Integer sort;
 
 }

@@ -15,12 +15,11 @@ import javax.persistence.Table;
  **/
 @Data
 @Table(name = "tb_category_brand")
-@NoArgsConstructor
-@AllArgsConstructor
+@NoArgsConstructor   // 无参构造函数
+@AllArgsConstructor   // 有参构造函数
 public class CategoryBrandEntity {
 
-
-    private Integer categoryId;
+     private Integer categoryId;
 
     private Integer brandId;
 

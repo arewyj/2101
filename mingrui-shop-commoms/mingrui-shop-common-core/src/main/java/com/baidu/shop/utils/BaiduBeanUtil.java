@@ -11,8 +11,9 @@ import org.springframework.beans.BeanUtils;
  **/
 public class BaiduBeanUtil<T> {
     public static <T> T copyProperties(Object source,Class<T> clazz){
+       T t = null;
         try {
-            T t = clazz.newInstance();
+            t = clazz.newInstance();
             BeanUtils.copyProperties(source,t);
             return t;
         } catch (InstantiationException e) {
@@ -20,7 +21,7 @@ public class BaiduBeanUtil<T> {
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
-        return null;
+        return t;
     }
 
 }

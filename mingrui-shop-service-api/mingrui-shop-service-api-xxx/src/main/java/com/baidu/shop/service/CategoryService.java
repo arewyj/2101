@@ -37,4 +37,7 @@ public interface CategoryService {
     Result<JsonObject> editCategory(@Validated({MingruiOperation.Update.class}) @RequestBody CategoryEntity categoryEntity);
 
 
+    @ApiOperation(value = "通过品牌ID查询分类信息")
+    @GetMapping(value = "category/brand")
+    Result<List<CategoryEntity>> getCategoryByBrandId(Integer brandId);
 }

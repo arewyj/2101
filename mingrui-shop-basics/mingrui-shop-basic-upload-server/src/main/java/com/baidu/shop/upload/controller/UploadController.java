@@ -20,15 +20,19 @@ import java.util.UUID;
 @RestController
 @RequestMapping(value = "upload")
 public class UploadController extends BaseApiService{
-    //linux系统的上传目录
+
+    //window系统的上传目录
     @Value(value = "${mingrui.upload.path.windows}")
     private String windowsPath;
-    //window系统的上传目录
+
+    //linux系统的上传目录
     @Value(value = "${mingrui.upload.path.linux}")
     private String linuxPath;
+
     //图片服务器的地址
     @Value(value = "${mingrui.upload.img.host}")
-    private String imageHost;
+    private String imgHost;
+
     @PostMapping
     public Result<String> uploadImg(@RequestParam MultipartFile file) {
         if(file.isEmpty()) return this.setResultError("上传的文件为空");//判断上传的
@@ -55,6 +59,6 @@ public class UploadController extends BaseApiService{
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        return this.setResult(HTTPStatus.OK,"upload success!!!",imageHost + "/"+ filename);//将文件名返回页面用于页面回显
+        return this.setResult(HTTPStatus.OK,"upload success!!!",imgHost + "/"+ filename);//将文件名返回页面用于页面回显
     }
 }

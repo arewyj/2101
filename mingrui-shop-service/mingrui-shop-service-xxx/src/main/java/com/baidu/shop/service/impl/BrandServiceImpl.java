@@ -18,7 +18,6 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RestController;
 import tk.mybatis.mapper.entity.Example;
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -66,11 +65,11 @@ public class BrandServiceImpl extends BaseApiService implements BrandService {
         // 新增返回
         BrandEntity brandEntity = BaiduBeanUtil.copyProperties(brandDTO, BrandEntity.class);
         //处理品牌首字母
-        brandEntity.setLetter(PinyinUtil.getUpperCase(String.valueOf(brandEntity.getName().toCharArray()[0]),false).toCharArray()[0]);
+       brandEntity.setLetter(PinyinUtil.getUpperCase(String.valueOf(brandEntity.getName().toCharArray()[0]),false).toCharArray()[0]);
 
-        brandMapper.insertSelective(brandEntity);
+       brandMapper.insertSelective(brandEntity);
 
-        this.insertCategoryBrandList(brandDTO.getCategories(),brandEntity.getId());
+       this.insertCategoryBrandList(brandDTO.getCategories(),brandEntity.getId());
 
         return this.setResultSuccess();
     }
@@ -113,7 +112,7 @@ public class BrandServiceImpl extends BaseApiService implements BrandService {
     // 提取的方法
     private void insertCategoryBrandList(String categories,Integer brandId){
 
-        if (StringUtils.isEmpty(categories)) throw  new RuntimeException("分类信息不能为空");
+        if (StringUtils.isEmpty(categories))  throw  new RuntimeException("分类信息不能为空");
 
         //判断分类集合字符串中是否包含,
         if (categories.contains(",")) {//多个分类 --> 批量新增
@@ -128,7 +127,6 @@ public class BrandServiceImpl extends BaseApiService implements BrandService {
             categoryBrandEntity.setCategoryId(Integer.valueOf(categories));
             categoryBrandMapper.insertSelective(categoryBrandEntity);
         }
-
     }
 
     private void deleteCategoryBrandByBrandId(Integer brandId){

@@ -22,11 +22,11 @@ public class BrandDTO extends BaseDTO {
 
     @Id
     @ApiModelProperty(value = "品牌主键",example = "1")
-    @NotNull(message = "主键不能为空",groups = {MingruiOperation.Update.class})
+    @NotNull(message = "品牌主键不能为空",groups = {MingruiOperation.Update.class})  // 用于Integer类型
     private Integer id;
 
     @ApiModelProperty(value = "品牌名称")
-    @NotEmpty(message = "品牌名称不能为空",groups = {MingruiOperation.Update.class,MingruiOperation.Add.class})
+    @NotEmpty(message = "品牌名称不能为空",groups = {MingruiOperation.Update.class,MingruiOperation.Add.class}) // 支持的是字符串类型字段
     private String name;
 
     @ApiModelProperty(value = "品牌logo")
