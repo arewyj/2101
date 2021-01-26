@@ -45,13 +45,16 @@ public interface SpecificationService {
     @GetMapping(value = "specparam/list")
     Result<List<SpecParamEntity>> getSepcGroupInfo(SpecParamDTO specParamDTO);
 
+
     @ApiOperation(value = "新增规格参数")
     @PostMapping(value = "specparam/save")
     Result<JSONObject> save(@RequestBody SpecParamDTO specParamDTO);
 
+
     @ApiOperation(value = "修改规格参数")
     @PutMapping(value = "specparam/save")
     Result<JSONObject> editSpecParam(@RequestBody SpecParamDTO specParamDTO);
+
 
     @ApiOperation(value = "删除规格参数")
     @DeleteMapping(value = "specparam/del")
