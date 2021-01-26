@@ -33,7 +33,7 @@ public class SpecificationServiceImpl extends BaseApiService implements Specific
     @Resource
     private SpecGroupMapper specGroupMapper;
 
-    @Autowired
+    @Resource
     private SpecParamMapper specParamMapper;
 
     @Override
@@ -70,6 +70,9 @@ public class SpecificationServiceImpl extends BaseApiService implements Specific
         return this.setResultSuccess();
     }
 
+
+
+
     @Override
     public Result<List<SpecParamEntity>> getSepcGroupInfo(SpecParamDTO specParamDTO) {
         SpecParamEntity specParamEntity = BaiduBeanUtil.copyProperties(specParamDTO, SpecParamEntity.class);
@@ -77,6 +80,28 @@ public class SpecificationServiceImpl extends BaseApiService implements Specific
         example.createCriteria().andEqualTo("groupId",specParamEntity.getGroupId());
         List<SpecParamEntity> specParamEntities = specParamMapper.selectByExample(example);
         return this.setResultSuccess(specParamEntities);
+    }
+
+    @Transactional
+    @Override
+    public Result<JSONObject> save(SpecParamDTO specParamDTO) {
+
+        specParamMapper.insertSelective(BaiduBeanUtil.copyProperties(specParamDTO,SpecParamEntity.class));
+        return this.setResultSuccess();
+    }
+
+    @Transactional
+    @Override
+    public Result<JSONObject> editSpecParam(SpecParamDTO specParamDTO) {
+        specParamMapper.updateByPrimaryKeySelective(BaiduBeanUtil.copyProperties(specParamDTO,SpecParamEntity.class));
+        return this.setResultSuccess();
+    }
+
+    @Transactional
+    @Override
+    public Result<JSONObject> deleteSpecParamInfo(Integer id) {
+        specParamMapper.deleteByPrimaryKey(id);
+        return this.setResultSuccess();
     }
 
 }
