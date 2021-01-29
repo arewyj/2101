@@ -5,6 +5,7 @@ import com.baidu.shop.base.Result;
 import com.baidu.shop.entity.CategoryEntity;
 import com.baidu.shop.mapper.CategoryMapper;
 import com.baidu.shop.service.CategoryService;
+import com.baidu.shop.status.HTTPStatus;
 import com.baidu.shop.utils.ObjectUtil;
 import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,19 +46,21 @@ public class CategoryServiceImpl extends BaseApiService implements CategoryServi
 
         //通过id查询当前节点信息
         CategoryEntity categoryEntity = categoryMapper.selectByPrimaryKey(id);
-        if(ObjectUtil.isNull(categoryEntity)) return this.setResultError("数据不存在");
+        if(ObjectUtil.isNull(categoryEntity)) return this.setResultError(HTTPStatus.OPERATION_ERROR,"数据不存在");
 
         // 当前节点是否为父节点
-        if(categoryEntity.getIsParent() == 1 ) return this.setResultError("当前节点为父节点，不能删除");
+        if(categoryEntity.getIsParent() == 1 ) return this.setResultError(HTTPStatus.OPERATION_ERROR,"当前节点为父节点，不能删除");
+
 
         Example example = new Example(CategoryEntity.class);
         example.createCriteria().andEqualTo("parentId",categoryEntity.getParentId());
 
         List<CategoryEntity> list = categoryMapper.selectByExample(example);
+        //如果size <= 1 --> 如果当前节点被删除的话 当前节点的父节点下没有节点了 --> 将当前节点的父节点状态改为叶子节点
         if (list.size() <= 1){
             CategoryEntity updateCategoryEntity = new CategoryEntity();
             updateCategoryEntity.setParentId(0);
-            updateCategoryEntity.setId(categoryEntity.getId());
+            updateCategoryEntity.setId(categoryEntity.getParentId());
 
             categoryMapper.updateByPrimaryKeySelective(updateCategoryEntity);
         }

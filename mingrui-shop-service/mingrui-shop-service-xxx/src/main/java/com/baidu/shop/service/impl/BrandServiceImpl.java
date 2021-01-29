@@ -50,7 +50,9 @@ public class BrandServiceImpl extends BaseApiService implements BrandService {
 
         Example example = new Example(BrandEntity.class);
 
-        example.createCriteria().andLike("name", "%" + brandEntity.getName() + "%");
+        if(!StringUtils.isEmpty(brandEntity.getName()))
+            example.createCriteria().andLike("name", "%" + brandEntity.getName() + "%");
+
 
         List<BrandEntity> brandEntities = brandMapper.selectByExample(example);
         PageInfo<BrandEntity> pageInfo = new PageInfo<>(brandEntities);
@@ -88,7 +90,7 @@ public class BrandServiceImpl extends BaseApiService implements BrandService {
         //批量新增  得到分类集合字符串
         //String categories = brandDTO.getCategories();
 
-        this.insertCategoryBrandList(brandDTO.getCategories(),brandDTO.getId());
+        this.insertCategoryBrandList(brandDTO.getCategories(),brandEntity.getId());
 
         return this.setResultSuccess();
     }

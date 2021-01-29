@@ -210,7 +210,6 @@ public class GoodsServiceImpl extends BaseApiService implements GoodsService {
             stockEntity.setStock(skuDTO.getStock());
             stockMapper.insertSelective(stockEntity);
         });
-
     }
 
     private void deleteSkuAndStockInfo(Integer spuId){
@@ -222,4 +221,6 @@ public class GoodsServiceImpl extends BaseApiService implements GoodsService {
         skuMapper.deleteByIdList(skuIdList );
         stockMapper.deleteByIdList(skuIdList );
     }
+
+
 }
