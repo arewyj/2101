@@ -10,9 +10,9 @@ import com.baidu.shop.entity.SpecParamEntity;
 import com.baidu.shop.mapper.SpecGroupMapper;
 import com.baidu.shop.mapper.SpecParamMapper;
 import com.baidu.shop.service.SpecificationService;
+import com.baidu.shop.status.HTTPStatus;
 import com.baidu.shop.utils.BaiduBeanUtil;
 import com.baidu.shop.utils.ObjectUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RestController;
 import tk.mybatis.mapper.entity.Example;
@@ -62,10 +62,22 @@ public class SpecificationServiceImpl extends BaseApiService implements Specific
         return this.setResultSuccess();
     }
 
+    /*
+     * 删除规格组之前 先判断一下当前规格组下是否有规格参数
+     * true ：有  不能删除
+     * false : 可以删除
+     */
     @Transactional
     @Override
     public Result<JSONObject> deleteSpecGroupInfo(Integer id) {
-       specGroupMapper.deleteByPrimaryKey(id);
+
+        Example example = new Example(SpecParamEntity.class);
+        example.createCriteria().andEqualTo("groupId",id);
+        List<SpecParamEntity> specParamEntities = specParamMapper.selectByExample(example);
+        if(specParamEntities.size() != 0)
+            return this.setResultError(HTTPStatus.OPERATION_ERROR,"绑定有规格组， 不能被删除");
+
+        specGroupMapper.deleteByPrimaryKey(id);
 
         return this.setResultSuccess();
     }

@@ -59,7 +59,7 @@ public class CategoryServiceImpl extends BaseApiService implements CategoryServi
         //如果size <= 1 --> 如果当前节点被删除的话 当前节点的父节点下没有节点了 --> 将当前节点的父节点状态改为叶子节点
         if (list.size() <= 1){
             CategoryEntity updateCategoryEntity = new CategoryEntity();
-            updateCategoryEntity.setParentId(0);
+            updateCategoryEntity.setIsParent(0);
             updateCategoryEntity.setId(categoryEntity.getParentId());
 
             categoryMapper.updateByPrimaryKeySelective(updateCategoryEntity);
